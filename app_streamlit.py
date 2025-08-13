@@ -53,11 +53,13 @@ def main():
 
             if not errori:
                 st.success(f"Dati ricevuti con successo!")
-                st.write(f"Ciao, {nome} {cognome}!")
-                st.write(f"Hai {eta} anni.")
-                st.write(f"La tua professione è: {professione}")
-                if note:
-                    st.write(f"Le tue note: {note}")
+                # Usiamo un expander per mostrare i dati inviati in modo ordinato
+                with st.expander("Visualizza i dati inviati"):
+                    st.write(f"**Nome completo:** {nome} {cognome}")
+                    st.write(f"**Età:** {eta} anni")
+                    st.write(f"**Professione:** {professione}")
+                    if note:
+                        st.write(f"**Note:** {note}")
             else:
                 for errore in errori:
                     st.error(errore)
