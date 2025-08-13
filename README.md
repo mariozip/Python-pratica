@@ -9,6 +9,9 @@ Esempi e prove di programmazione in Python
     ```bash
     python3 -m venv .venv
     source .venv/bin/activate
+
+    Per disattivarlo:
+    deactivate
     ```
     *Nota: L'attivazione va ripetuta ogni volta che apri un nuovo terminale o rientri nel Codespace.*
 2.  **Installa le dipendenze:**
