@@ -1,4 +1,6 @@
 # Questo file elenca tutte le dipendenze Python necessarie per il progetto.
 # Per installarle tutte in una volta, esegui dal terminale:
 # pip install -r requirements.txt
-streamlit
+# Specificare la versione (es. streamlit==1.33.0) garantisce che il progetto
+# funzioni allo stesso modo su computer diversi e in futuro.
+streamlit==1.33.0
