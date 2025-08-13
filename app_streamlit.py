@@ -28,8 +28,9 @@ def main():
         
         # st.selectbox crea un menu a tendina.
         # Il primo argomento è l'etichetta, il secondo è la lista di opzioni.
-        opzioni_professione = ["Studente", "Ingegnere", "Medico", "Artista", "Altro"]
-        professione = st.selectbox("Professione", opzioni_professione, placeholder="Scegli la tua professione...")
+        # Aggiungiamo un'opzione iniziale per assicurarci che l'utente faccia una scelta attiva.
+        opzioni_professione = ["Seleziona...", "Studente", "Ingegnere", "Medico", "Artista", "Altro"]
+        professione = st.selectbox("Professione", opzioni_professione)
 
         # st.text_area crea un campo di testo su più righe.
         note = st.text_area("Note aggiuntive (opzionale)")
@@ -47,8 +48,8 @@ def main():
                 errori.append("Il campo 'Cognome' è obbligatorio.")
             if eta <= 0:
                 errori.append("L'età deve essere un numero maggiore di zero.")
-            if not professione:
-                errori.append("Per favore, seleziona una professione.")
+            if professione == "Seleziona...":
+                errori.append("Devi selezionare una professione.")
 
             if not errori:
                 st.success(f"Dati ricevuti con successo!")
