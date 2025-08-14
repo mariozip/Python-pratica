@@ -1,8 +1,12 @@
 # per eseguire digitare nel terminal:
 # streamlit run /workspaces/Python-pratica/app_streamlit.py
+# streamlit run /workspaces/Python-pratica/app_streamlit.py &   // così lo esegue in background e il terminal rimane a
 
 
 import streamlit as st
+
+# Definiamo le opzioni come una costante per una migliore organizzazione
+OPZIONI_PROFESSIONE = ["Seleziona...", "Studente", "Ingegnere", "Medico", "Artista", "Altro"]
 
 def main():
     """
@@ -29,8 +33,7 @@ def main():
         # st.selectbox crea un menu a tendina.
         # Il primo argomento è l'etichetta, il secondo è la lista di opzioni.
         # Aggiungiamo un'opzione iniziale per assicurarci che l'utente faccia una scelta attiva.
-        opzioni_professione = ["Seleziona...", "Studente", "Ingegnere", "Medico", "Artista", "Altro"]
-        professione = st.selectbox("Professione", opzioni_professione)
+        professione = st.selectbox("Professione", OPZIONI_PROFESSIONE)
 
         # st.text_area crea un campo di testo su più righe.
         note = st.text_area("Note aggiuntive (opzionale)")
