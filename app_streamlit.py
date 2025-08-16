@@ -8,6 +8,28 @@ import streamlit as st
 # Definiamo le opzioni come una costante per una migliore organizzazione
 OPZIONI_PROFESSIONE = ["Seleziona...", "Studente", "Ingegnere", "Medico", "Artista", "Altro"]
 
+def valida_input(nome, cognome, eta, professione):
+    """
+    Valida i dati di input del form e restituisce una lista di errori.
+    """
+    errori = []
+    if not nome:
+        errori.append("Il campo 'Nome' è obbligatorio.")
+    if not cognome:
+        errori.append("Il campo 'Cognome' è obbligatorio.")
+    if eta <= 0:
+        errori.append("L'età deve essere un numero maggiore di zero.")
+    if professione == "Seleziona...":
+        errori.append("Devi selezionare una professione.")
+    return errori
+
+def mostra_dati_inviati(nome, cognome, eta, professione, note):
+    st.write(f"**Nome completo:** {nome} {cognome}")
+    st.write(f"**Età:** {eta} anni")
+    st.write(f"**Professione:** {professione}")
+    if note:
+        st.write(f"**Note:** {note}")
+
 def main():
     """
     Funzione principale che definisce e gestisce l'interfaccia dell'app Streamlit.
@@ -43,26 +65,13 @@ def main():
         submitted = st.form_submit_button("Invia Dati")
 
         if submitted:
-            # Logica di validazione più specifica per un feedback migliore all'utente
-            errori = []
-            if not nome:
-                errori.append("Il campo 'Nome' è obbligatorio.")
-            if not cognome:
-                errori.append("Il campo 'Cognome' è obbligatorio.")
-            if eta <= 0:
-                errori.append("L'età deve essere un numero maggiore di zero.")
-            if professione == "Seleziona...":
-                errori.append("Devi selezionare una professione.")
+            errori = valida_input(nome, cognome, eta, professione)
 
             if not errori:
                 st.success(f"Dati ricevuti con successo!")
                 # Usiamo un expander per mostrare i dati inviati in modo ordinato
                 with st.expander("Visualizza i dati inviati"):
-                    st.write(f"**Nome completo:** {nome} {cognome}")
-                    st.write(f"**Età:** {eta} anni")
-                    st.write(f"**Professione:** {professione}")
-                    if note:
-                        st.write(f"**Note:** {note}")
+                    mostra_dati_inviati(nome, cognome, eta, professione, note)
             else:
                 for errore in errori:
                     st.error(errore)
